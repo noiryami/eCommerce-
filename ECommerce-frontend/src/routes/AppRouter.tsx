@@ -41,7 +41,9 @@ const router = createBrowserRouter([
             },
             {
                 path:"wishlist",
-                element:<PageSuspenseFallback ><Wishlist/></PageSuspenseFallback>
+                element:<ProtectedRoute>
+                           <PageSuspenseFallback ><Wishlist/></PageSuspenseFallback>
+                        </ProtectedRoute>
             },
             {
                 path:"categories",
@@ -76,11 +78,11 @@ const router = createBrowserRouter([
             },
             {
                 path:"profile",
-                element:<PageSuspenseFallback>
-                            <ProtectedRoute>
+                element:<ProtectedRoute>
+                            <PageSuspenseFallback>
                                 <Profile/> 
-                            </ProtectedRoute>
-                        </PageSuspenseFallback>,
+                             </PageSuspenseFallback>
+                        </ProtectedRoute>,
             },
             
 

@@ -11,7 +11,7 @@ type TResponse = {
     user:{
         id:number;
         firstName:string;
-        lastNmame:string;
+        lastName:string;
         email:string;
     }
 }

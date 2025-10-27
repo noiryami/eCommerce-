@@ -15,12 +15,7 @@ const useProducts = () => {
   const cartItems =useAppSelector((state)=> state.cart.items);
   const withlistItemsId =useAppSelector((state)=>state.wishlist.itemsId);
 
-  const productFullInfo = records.map((el)=>({
-    ...el,
-    quantity:cartItems[el.id] ,
-    isLiked:withlistItemsId.includes(el.id),
-  }));
-
+  const userAccessToken =useAppSelector(state=>state.auth.accessToken)
   useEffect(() => {
     const promise = dispatch(actGetProductsByCatPrefix(params.prefix as string));
 
@@ -29,6 +24,13 @@ const useProducts = () => {
       promise.abort(); 
           };
   }, [dispatch, params]);
+  
+  const productFullInfo = records.map((el)=>({
+    ...el,
+    quantity:cartItems[el.id] ,
+    isLiked:withlistItemsId.includes(el.id),
+    isAuthenticated: userAccessToken?true:false,
+  }));
   
     return {loading,error,productFullInfo,productPrefix};
 }
